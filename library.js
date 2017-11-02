@@ -19,20 +19,56 @@ var library = {
                p02: { id: "p02",
                       name: "Other Playlist",
                       tracks: ["t03"]
-                    }
+                    },
+
              }
 }
+
+
+// function sayHello(){
+//   //console.log(library["tracks"]);
+//   // console.log(library["tracks"]["t01"]);
+//   // console.log(library["tracks"]["t01"].name);
+//   // console.log(library["tracks"]["t01"].artist);
+//   //console.log(library["playlists"]);
+
+//   Object.keys(library).forEach(function(key){
+//     console.log("The key is:"+key+" and complete object is:");
+//     console.log(library[key]);
+//     console.log("============================================");
+//   });
+
+// }
+
+// function printTest(){
+//   //p01: Coding Music - 2 tracks
+//   //p02: Other Playlist - 1 tracks
+//   Object.keys(library.playlists).forEach(function(key){
+//     console.log(key+": "+library["playlists"][key].name+" - "+library["playlists"][key].tracks.length+" tracks");
+//   });
+
+// }
+
 
 // FUNCTIONS TO IMPLEMENT:
 
 // prints a list of all playlists, in the form:
 // p01: Coding Music - 2 tracks
 // p02: Other Playlist - 1 tracks
+// p00001: fuck this shit - 0 tracks
 
 var printPlaylists = function () {
-
+  for(var key in library.playlists) {
+    var playlist = library.playlists[key];
+    console.log(key + ": " + playlist.name + " - " + playlist.tracks.length + " tracks ");
+  }
 }
 
+// printPlaylists();
+
+
+
+// printPlaylists();
 
 // prints a list of all tracks, in the form:
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
@@ -41,8 +77,18 @@ var printPlaylists = function () {
 
 var printTracks = function () {
 
+  for (var key in library.tracks) {
+    var track = library.tracks[key]
+    console.log(key + ": " + track.name + " by " + track.artist + " (" + track.album + ") ");
+  }
+
+ // Object.keys(library.tracks).forEach(function(key) {
+ //  console.log(key + ": " + library["tracks"][key].name + " by " + library.tracks[key].artist + " ( " + library[tracks][key].album + " ) ")
+ // });
+
 }
 
+//printTracks();
 
 // prints a list of tracks for a given playlist, in the form:
 // p01: Coding Music - 2 tracks
@@ -50,16 +96,33 @@ var printTracks = function () {
 // t02: Model View Controller by James Dempsey (WWDC 2003)
 
 var printPlaylist = function (playlistId) {
+  // for (var key in library) {
+  //   var playlist = library.playlist[key]
+  //   var track = library.track[key]
+  //   console.log(playlist + ": " + playlist.name + " - " + playlist.tracks.length + " tracks");
+  // }
 
+  console.log(playlistId+": "+library.playlists[playlistId].name+" - "+library.playlists[playlistId].tracks.length+" tracks");
+
+  for(var i = 0; i < library.playlists[playlistId].tracks.length; i++){
+      var temp = library.playlists[playlistId].tracks[i];
+      console.log(library.playlists[playlistId].tracks[i]+": "+library.tracks[temp].name+ " by "+library.tracks[temp].artist+"("+library.tracks[temp].album+")");
+  }
 }
+
+// printPlaylist('p01')
 
 
 // adds an existing track to an existing playlist
 
 var addTrackToPlaylist = function (trackId, playlistId) {
 
+  library.playlists[playlistId].tracks.push(trackId);
+
+  console.log(library.playlists[playlistId])
 }
 
+// addTrackToPlaylist('t03', 'p01')
 
 // generates a unique id
 // (use this for addTrack and addPlaylist)
@@ -72,21 +135,40 @@ var uid = function() {
 // adds a track to the library
 
 var addTrack = function (name, artist, album) {
+  var id = uid();
+
+  library.tracks[id] = {
+    id: id,
+    name: name,
+    artist: artist,
+    album: album
+  }
 
 }
+
+addTrack('my cool track', 'foo', 'bar');
+
+// console.log(library.tracks);
 
 
 // adds a playlist to the library
 
 var addPlaylist = function (name) {
 
+ var id = uid();
+ library.playlists[id] = {
+  id: id,
+  name: name
+ }
+
 }
 
-
+addPlaylist('Brandon')
+console.log(library.playlists)
 // STRETCH:
 // given a query string string, prints a list of tracks
 // where the name, artist or album contains the query string (case insensitive)
-// tip: use "string".search("tri") 
+// tip: use "string".search("tri")
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search
 
 var printSearchResults = function(query) {
