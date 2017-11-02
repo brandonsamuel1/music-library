@@ -25,31 +25,6 @@ var library = {
 }
 
 
-// function sayHello(){
-//   //console.log(library["tracks"]);
-//   // console.log(library["tracks"]["t01"]);
-//   // console.log(library["tracks"]["t01"].name);
-//   // console.log(library["tracks"]["t01"].artist);
-//   //console.log(library["playlists"]);
-
-//   Object.keys(library).forEach(function(key){
-//     console.log("The key is:"+key+" and complete object is:");
-//     console.log(library[key]);
-//     console.log("============================================");
-//   });
-
-// }
-
-// function printTest(){
-//   //p01: Coding Music - 2 tracks
-//   //p02: Other Playlist - 1 tracks
-//   Object.keys(library.playlists).forEach(function(key){
-//     console.log(key+": "+library["playlists"][key].name+" - "+library["playlists"][key].tracks.length+" tracks");
-//   });
-
-// }
-
-
 // FUNCTIONS TO IMPLEMENT:
 
 // prints a list of all playlists, in the form:
@@ -64,7 +39,7 @@ var printPlaylists = function () {
   }
 }
 
-// printPlaylists();
+ printPlaylists();
 
 
 
@@ -82,13 +57,10 @@ var printTracks = function () {
     console.log(key + ": " + track.name + " by " + track.artist + " (" + track.album + ") ");
   }
 
- // Object.keys(library.tracks).forEach(function(key) {
- //  console.log(key + ": " + library["tracks"][key].name + " by " + library.tracks[key].artist + " ( " + library[tracks][key].album + " ) ")
- // });
 
 }
 
-//printTracks();
+printTracks();
 
 // prints a list of tracks for a given playlist, in the form:
 // p01: Coding Music - 2 tracks
@@ -96,11 +68,7 @@ var printTracks = function () {
 // t02: Model View Controller by James Dempsey (WWDC 2003)
 
 var printPlaylist = function (playlistId) {
-  // for (var key in library) {
-  //   var playlist = library.playlist[key]
-  //   var track = library.track[key]
-  //   console.log(playlist + ": " + playlist.name + " - " + playlist.tracks.length + " tracks");
-  // }
+
 
   console.log(playlistId+": "+library.playlists[playlistId].name+" - "+library.playlists[playlistId].tracks.length+" tracks");
 
@@ -110,7 +78,7 @@ var printPlaylist = function (playlistId) {
   }
 }
 
-// printPlaylist('p01')
+ printPlaylist('p01')
 
 
 // adds an existing track to an existing playlist
@@ -122,7 +90,7 @@ var addTrackToPlaylist = function (trackId, playlistId) {
   console.log(library.playlists[playlistId])
 }
 
-// addTrackToPlaylist('t03', 'p01')
+ addTrackToPlaylist('t03', 'p01')
 
 // generates a unique id
 // (use this for addTrack and addPlaylist)
@@ -148,7 +116,7 @@ var addTrack = function (name, artist, album) {
 
 addTrack('my cool track', 'foo', 'bar');
 
-// console.log(library.tracks);
+ console.log(library.tracks);
 
 
 // adds a playlist to the library
